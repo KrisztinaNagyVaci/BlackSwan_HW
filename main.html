@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html ng-app="NameGame">
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-animate.js"></script>
+  <script src="https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.1.1.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.1/angular-ui-router.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <script src="main.js"></script>
+  <link rel = "stylesheet" type = "text/css" href = "main.css"/>
+  <meta charset="UTF-8">
+</head>
+  <body ng-controller="AppController">
+    <div class="outer_container">
+      <div class="jumbotron main_jumbotron" ng-hide="showScores">
+        <div class="container">
+          <h1>Dog names forever</h1>
+          <h3>What are the popular dog names?</h3>
+        </div>
+      </div>
+      <div class="jumbotron scores_jumbotron" ng-show="showScores">
+        <div class="container">
+          <h1>Names and scores</h1>
+        </div>
+      </div>
+      <div class="toggle_container">
+        <a href ng-click="showScores = !showScores">Toggle scores</a>
+      </div>
+      <form class="col-lg-4 col-lg-offset-4" ng-hide="showScores">
+        <div class="input-append form-group form-inline">
+          <label for="input">Type in a doggy name</label>
+          <div>
+            <input type="text" class="form-control form-control-lg" placeholder="Charlie" ng-model="newDog.name" ng-required="true">
+          </div>
+          <button type="submit" class="btn-lg btn-primary col-lg-7 col-lg-offset-1" ng-click="addName()">Add name</button>
+        </div>
+      </form>
+      <div ng-hide="showScores">
+        <p>{{message}}</p>
+        <p>{{score}}</p>
+        <p>{{highscore}}</p>
+      </div>
+      <div ng-show="showScores">
+        <ul ng-repeat="dog in dogsandscore">
+          <li>name: {{dog[0].name}} score: {{dog[0].score}}</li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>

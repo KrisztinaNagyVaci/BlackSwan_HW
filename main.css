@@ -1,0 +1,57 @@
+.jumbotron {
+  background-size: cover;
+  height: 295px;
+}
+
+.main_jumbotron {
+  background-image: url("snoopy.jpg");
+}
+
+.scores_jumbotron {
+  background-image: url("snoopy3.jpg");
+}
+
+.toggle_container {
+  margin-left: 20px;
+}
+
+button {
+  margin-top: 20px !important;
+}
+
+label {
+  font-size: 24pt;
+}
+
+input {
+  width: 335px !important;
+  height: 40px !important;
+}
+
+p {
+  font-size: 18pt;
+}
+
+/*.navbar {
+  margin-bottom: 0px !important;
+}*/
+
+/*.container-fluid {
+  padding-bottom: 10px !important;
+}
+
+a {
+  padding-top: 0px !important;
+}*/
+
+@media screen and (max-width: 580px) {
+    h1 {
+        width: 280px;
+    }
+    h3 {
+        width: 190px;
+    }
+    button, input {
+        width: 100% !important;
+    }
+}
