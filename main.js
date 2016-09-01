@@ -1,12 +1,38 @@
 var NameGame = angular.module('NameGame', []);
 
-NameGame.controller('AppController', function($scope, $http) {
+NameGame.factory('Listcreator', function() {
+  return {
+    createTwoItemsList: function(nameInput, scoreInput) {
+      return [ { name: nameInput, score: scoreInput } ];
+    }
+  };
+});
+
+// NameGame.factory('Messagecreator', function() {
+//   return {
+//     onListMessage: function() {
+//       return " is on the list."
+//     }
+//   };
+// });
+
+NameGame.factory('Messagecreator', function() {
+  return {
+    onListMessage: " is on the list.",
+    notOnListMessage: " is not on the list. Try again!",
+    totalScore: "Your total score is ",
+    score: "Your score is "
+  };
+});
+
+NameGame.controller('AppController', function($scope, $http, Listcreator, Messagecreator) {
   $scope.dogs = [{"name": "Max"}, {"name": "Buddy"}, {"name": "Charlie"}, {"name": "Jack"}, {"name": "Rocky"}, {"name": "Toby"},
   {"name": "Tucker"}, {"name": "Jake"}, {"name": "Bear"}, {"name": "Duke"}, {"name": "Teddy"}, {"name": "Oliver"}, {"name": "Riley"},
   {"name": "Bailey"}, {"name": "Bentley"}, {"name": "Brutus"}, {"name": "Buster"}, {"name": "Cody"}, {"name": "Dexter"}, {"name": "Winston"},]
   $scope.message = "";
   var highscore = 0;
   $scope.dogsandscore = [];
+
 
 // *******************Init process*************************
 
@@ -49,19 +75,19 @@ NameGame.controller('AppController', function($scope, $http) {
 // ******************Create messages*****************************
 
   function setOnlistMessage(newDog){
-    $scope.message = newDog + " is on the list."
+    $scope.message = newDog + Messagecreator.onListMessage;
   };
 
   function setNotOnlistMessage(newDog){
-    $scope.message = newDog + " is not on the list. Try again!"
+    $scope.message = newDog + Messagecreator.notOnListMessage;
   };
 
   function setTotalScoreMessage(highscore){
-    $scope.highscore = "Your total score is " + highscore;
+    $scope.highscore = Messagecreator.totalScore + highscore;
   };
 
   function setScoreMessage(score){
-    $scope.score = "Your score is " + score;
+    $scope.score = Messagecreator.score + score;
   };
 
   $scope.callScoresMessages = function(score, highscore){
@@ -79,13 +105,9 @@ NameGame.controller('AppController', function($scope, $http) {
 
 // *******************Manage lists********************************
 
-  function createTwoItemsList(nameInput, scoreInput) {
-    return [ { name: nameInput, score: scoreInput } ];
-  };
-
   function fillDogsAndScore(name, score){
       if (isUniqueWord(name)){
-        $scope.dogsandscore.push(createTwoItemsList(name, score));
+        $scope.dogsandscore.push(Listcreator.createTwoItemsList(name, score));
       };
   };
 
